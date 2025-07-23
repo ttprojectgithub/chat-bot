@@ -1,0 +1,52 @@
+<section class="chat-room" dir="rtl" aria-label="חדר הצ'אט">
+  <h1 class="chat-title">👋 חדר הצ'אט של Angular </h1>
+
+  <div class="messages-container"
+       role="log"
+       aria-live="polite"
+       aria-atomic="false"
+       aria-relevant="additions">
+    <div *ngFor="let msg of messages(); let i = index" [ngClass]="msg.sender" class="message" @fadeInUp tabindex="0">
+      <div class="avatar" [ngClass]="msg.sender" aria-hidden="true">
+        {{ msg.sender === 'user' ? 'את' : '🤖' }}
+      </div>
+
+      <div class="message-bubble">
+        <ng-container *ngIf="editingIndex !== i; else editMode">
+          <span class="message-content" dir="rtl" [innerHTML]="msg.content"></span>
+          <div *ngIf="msg.sender === 'bot'" class="message-actions" aria-label="אפשרויויות משוב">
+            <div class="feedback-buttons">
+              <button aria-label="אהבתי את התשובה" title="אהבתי">👍</button>
+              <button aria-label="לא אהבתי את התשובה" title="לא אהבתי">👎</button>
+            </div>
+            <button class="copy-button" (click)="copyToClipboard(msg.content)" aria-label="העתק תשובה">🗌</button>
+          </div>
+          <button *ngIf="msg.sender === 'user'" class="copy-button" style="left: 2rem" (click)="startEdit(i, msg.content)">✏️</button>
+        </ng-container>
+
+        <ng-template #editMode>
+          <form [formGroup]="editForm" (ngSubmit)="saveEdit(i)" class="edit-form">
+            <input formControlName="editMessage" type="text" placeholder="ערוך ההודעה...">
+            <button type="submit">שמור</button>
+            <button type="button" (click)="cancelEdit()">ביטול</button>
+          </form>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="sendMessage()" class="chat-input-form" aria-label="שלח הודעה">
+    <input formControlName="message"
+           type="text"
+           placeholder="כתוב הודעה..."
+           aria-label="כתוב הודעה למערכת הצ'אט"
+           autocomplete="off" />
+    <button type="submit" [disabled]="form.invalid" aria-label="שלח הודעה">שלח</button>
+  </form>
+
+  <loading-spinner *ngIf="isLoading()" aria-live="assertive" />
+
+  <div *ngIf="copied()" class="toast" aria-live="polite">
+    ✔️ הועתק!
+  </div>
+</section>

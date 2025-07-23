@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@angular/animations": "^19.2.14",
+    "dotenv": "^17.2.0",
+    "openai": "^5.10.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0"
+  }
+}
