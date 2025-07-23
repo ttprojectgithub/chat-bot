@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "npm run start:all",
     "start:all": "concurrently \"npx nx serve chat-bot\" \"npx nx serve api\""
   },
   "private": true,
