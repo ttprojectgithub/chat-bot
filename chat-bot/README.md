@@ -27,14 +27,20 @@ This single-page application enables users to engage with an AI-powered chatbot 
 
 ```
 chat-bot/
+├── .angular/
+├── .nx/
+├── .vscode/
 ├── apps/
-│   └── chat-bot/        # Angular frontend application
-├── libs/
-│   ├── bot/             # Bot logic (keywords + NLP)
-│   ├── shared-core/     # Shared services and interfaces
-│   └── shared-ui/       # Reusable UI components (e.g., Spinner)
-├── api/                 # Node.js backend server
-├── tools/               # Custom NX schematics and utilities
+│   ├── api/
+│   ├── api-e2e/
+│   ├── chat-bot/
+│   └── chat-bot-e2e/
+├── dist/
+└── libs/
+    ├── bot/
+    ├── shared-core/
+    └── shared-ui/
+
 ```
 
 ---
