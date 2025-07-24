@@ -19,7 +19,7 @@ This single-page application enables users to engage with an AI-powered chatbot 
 * **Styling**: SCSS, fully responsive RTL layout
 * **Accessibility**: A11y-compliant markup and keyboard navigation
 * **Testing**: Jest
-* **Deployment**: Ready for platforms like Vercel, Netlify, Railway
+* **Deployment**: Railway -in process
 
 ---
 
